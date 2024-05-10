@@ -1,7 +1,7 @@
 {
-  "name": "passport-pinterest",
+  "name": "passport-pinterest-shree",
   "version": "1.0.0",
-  "description": "Pinterest authentication strategy for Passport.",
+  "description": "Pinterest authentication strategy for Passport fixed with the new version.",
   "keywords": [
     "passport",
     "pinterest",
@@ -12,16 +12,16 @@
     "authorization",
     "identity"
   ],
-  "homepage": "https://github.com/analog-nico/passport-pinterest",
+  "homepage": "https://github.com/shreeMahadikGit/passport-pinterest",
   "bugs": {
-    "url": "https://github.com/analog-nico/passport-pinterest/issues"
+    "url": "https://github.com/shreeMahadikGit/passport-pinterest/issues"
   },
   "license": "ISC",
-  "author": "Nicolai Kamenzky (https://github.com/analog-nico)",
+  "author": "Shree Mahadik (https://github.com/shreeMahadikGit)",
   "main": "./lib/passport-pinterest/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/analog-nico/passport-pinterest.git"
+    "url": "https://github.com/shreeMahadikGit/passport-pinterest.git"
   },
   "scripts": {
     "test": "node_modules/.bin/gulp ci"

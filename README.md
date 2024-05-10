@@ -16,8 +16,8 @@ This module lets you authenticate using Pinterest in your Node.js applications. 
 
 This is a module for node.js and is installed via npm:
 
-``` bash
-npm install passport-pinterest --save
+```bash
+npm install passport-pinterest-shree --save
 ```
 
 ## Usage
@@ -26,20 +26,26 @@ npm install passport-pinterest --save
 
 The Pinterest authentication strategy authenticates users using a Pinterest account and OAuth 2.0 tokens. The strategy requires a `verify` callback, which accepts these credentials and calls `done` providing a user, as well as `options` specifying a client ID, client secret, scope, and callback URL.
 
-``` js
-passport.use(new PinterestStrategy({
-        clientID: PINTEREST_APP_ID,
-        clientSecret: PINTEREST_APP_SECRET,
-        scope: ['read_public', 'read_relationships'],
-        callbackURL: "https://localhost:3000/auth/pinterest/callback",
-        state: true
-    },
-    function(accessToken, refreshToken, profile, done) {
-        User.findOrCreate({ pinterestId: profile.id }, function (err, user) {
-            return done(err, user);
-        });
-    }
-));
+```js
+passport.use(
+    new PinterestStrategy(
+        {
+            clientID: PINTEREST_APP_ID,
+            clientSecret: PINTEREST_APP_SECRET,
+            scope: ["read_public", "read_relationships"],
+            callbackURL: "https://localhost:3000/auth/pinterest/callback",
+            state: true,
+        },
+        function (accessToken, refreshToken, profile, done) {
+            User.findOrCreate(
+                { pinterestId: profile.id },
+                function (err, user) {
+                    return done(err, user);
+                }
+            );
+        }
+    )
+);
 ```
 
 Set the scope parameter according to the [list of available scopes](https://developers.pinterest.com/docs/api/overview/#scopes).
@@ -52,16 +58,15 @@ Use `passport.authenticate()`, specifying the `'pinterest'` strategy, to authent
 
 For example, as route middleware in an [Express](http://expressjs.com/) application:
 
-``` js
-app.get('/auth/pinterest',
-    passport.authenticate('pinterest')
-);
+```js
+app.get("/auth/pinterest", passport.authenticate("pinterest"));
 
-app.get('/auth/pinterest/callback', 
-    passport.authenticate('pinterest', { failureRedirect: '/login' }),
-    function(req, res) {
+app.get(
+    "/auth/pinterest/callback",
+    passport.authenticate("pinterest", { failureRedirect: "/login" }),
+    function (req, res) {
         // Successful authentication, redirect home.
-        res.redirect('/');
+        res.redirect("/");
     }
 );
 ```
@@ -82,24 +87,24 @@ If you want to debug a test you should use `gulp test-without-coverage` to run a
 
 ## Change History
 
-- v1.0.0 (2016-10-24)
-    - **Breaking Change**: In order to support custom `state` values, the default `state` handling by Passport is not activated by default anymore. Please use `new PinterestStrategy({ state: true, ... })` to get the old behavior.
-      *(Thanks to @somprabhsharma for [issue #3](https://github.com/analog-nico/passport-pinterest/issues/3) and [pull request #4](https://github.com/analog-nico/passport-pinterest/pull/4))*
-- v0.4.0 (2016-06-08)
-    - Allowing to pass custom `options.state` string
-      *(Thanks to @cvinson for [pull request #2](https://github.com/analog-nico/passport-pinterest/pull/2))*
-    - Improved input validation
-    - Added node.js v6 to CI build
-    - Updated dependencies
-- v0.3.0 (2015-10-30)
-    - Changed default session key name from "oauth2:api.pinterest.com" to "oauth2:pinterest" because the dots made saving the session in MongoDB impossible
-- v0.2.0 (2015-09-29)
-    - Returning profile with more fields
-- v0.1.0 (2015-09-28)
-    - Verified successfully that the authentication is working
-    - No code changes
-- v0.0.1 (2015-09-26)
-    - Alpha release for people who want to help finding the bug mentioned at the top
+-   v1.0.0 (2016-10-24)
+    -   **Breaking Change**: In order to support custom `state` values, the default `state` handling by Passport is not activated by default anymore. Please use `new PinterestStrategy({ state: true, ... })` to get the old behavior.
+        _(Thanks to @somprabhsharma for [issue #3](https://github.com/shreeMahadikGit/passport-pinterest/issues/3) and [pull request #4](https://github.com/shreeMahadikGit/passport-pinterest/pull/4))_
+-   v0.4.0 (2016-06-08)
+    -   Allowing to pass custom `options.state` string
+        _(Thanks to @cvinson for [pull request #2](https://github.com/shreeMahadikGit/passport-pinterest/pull/2))_
+    -   Improved input validation
+    -   Added node.js v6 to CI build
+    -   Updated dependencies
+-   v0.3.0 (2015-10-30)
+    -   Changed default session key name from "oauth2:www.pinterest.com" to "oauth2:pinterest" because the dots made saving the session in MongoDB impossible
+-   v0.2.0 (2015-09-29)
+    -   Returning profile with more fields
+-   v0.1.0 (2015-09-28)
+    -   Verified successfully that the authentication is working
+    -   No code changes
+-   v0.0.1 (2015-09-26)
+    -   Alpha release for people who want to help finding the bug mentioned at the top
 
 ## License (ISC)
 
