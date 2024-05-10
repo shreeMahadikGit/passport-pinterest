@@ -87,7 +87,7 @@ If you want to debug a test you should use `gulp test-without-coverage` to run a
 
 ## Change History
 
--   v1.0.0 (2016-10-24)
+-   v1.0.1 (2016-10-24)
     -   **Breaking Change**: In order to support custom `state` values, the default `state` handling by Passport is not activated by default anymore. Please use `new PinterestStrategy({ state: true, ... })` to get the old behavior.
         _(Thanks to @somprabhsharma for [issue #3](https://github.com/shreeMahadikGit/passport-pinterest/issues/3) and [pull request #4](https://github.com/shreeMahadikGit/passport-pinterest/pull/4))_
 -   v0.4.0 (2016-06-08)
